@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+<!-- Header -->
+{% block title%} /{{board.board_short_name}}/ - {{board.board_name}}{% endblock
+%}
+
+<!-- Content -->
+{% block content %} {% include'includes/modal-thread.html'%}
+<div class="container">
+  <div class="row justify-content-center mb-5">
+    <div class="mt-5 col-lg-4 text-center">
+      <h1 class="text-center fw-bold">
+        /{{board.board_short_name}}/ - {{board.board_name}}
+      </h1>
+      <br />
+
+      <h4>
+        [<a href="{{ url_for('home_page')}}" class="text-decoration-none">
+          board </a
+        >]
+      </h4>
+      <br />
+      <h4>
+        [<a
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#create-post"
+          href=""
+          class="text-decoration-none"
+        >
+          start a new thread</a
+        >]
+      </h4>
+    </div>
+  </div>
+</div>
+<div class="row">
+  {% for thread in threads %}
+  <div class="bg-dark p-3 ps-4 mb-5 shadow-sm">
+    <div class="row pb-2">
+      {% if thread.image_file != '' %}
+      <div class="col-lg-3">
+        <p>
+          file :
+          <a href="{{url_for('static', filename='uploads/'+thread.image_file)}}"
+            >{{thread.image_file}}</a
+          >
+        </p>
+        <img
+          src="{{url_for('static', filename='uploads/'+thread.image_file)}}"
+          alt=""
+          srcset=""
+          width="100%"
+        />
+      </div>
+      {%endif%}
+      <div class="col">
+        <p class="fw-bold">
+          >> {{thread.name}}
+          <span class="text-secondary fw-normal"
+            >{{thread.format_datetime}}</span
+          >
+          <span>No.{{ thread.id}} </span>
+          ▶ [<a
+            class="text-decoration-none"
+            href="{{url_for('thread_page', board=board.board_short_name, thread=thread.id)}}"
+            >Reply</a
+          >]
+        </p>
+        <span>{{thread.text}}</span>
+      </div>
+    </div>
+    {% for reply in replies.filter_by(thread=thread.id).limit(5) %}
+
+    <div class="row pt-2">
+      <div class="col-lg-3"></div>
+      <div class="col">
+        <hr />
+
+        <div class="row">
+          {% if reply.image_file != '' %}
+          <div class="col-lg-3">
+            <p>
+              file :
+              <a
+                href="{{url_for('static', filename='uploads/'+reply.image_file)}}"
+                >{{reply.image_file}}</a
+              >
+            </p>
+            <img
+              src="{{url_for('static', filename='uploads/'+reply.image_file)}}"
+              alt=""
+              srcset=""
+              width="40%"
+            />
+          </div>
+          {%endif%}
+          <div class="col">
+            <p class="fw-bold">
+              >> {{reply.name}}
+              <span class="text-secondary fw-normal"
+                >{{reply.format_datetime}}</span
+              >
+              <span>No.{{ reply.id}} </span>
+              ▶ <span>No.{{ thread.id}} </span>
+            </p>
+            <span>{{reply.text}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{%endfor%} {% endblock %}

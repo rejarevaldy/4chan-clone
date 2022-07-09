@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{%block title%} {%endblock%}</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+      html,
+      body {
+        height: 100%;
+        background-color: #1d1f21;
+        font-family: "Inconsolata", monospace !important;
+        font-size: 14px;
+        color: white;
+      }
+
+      a {
+        color: #7262c4;
+      }
+
+      a:hover {
+        color: red;
+      }
+
+      .bg-dark {
+        background-color: #282a2e;
+      }
+
+      .bg-purple {
+        background-color: #796db8;
+      }
+
+      .form-control {
+        border-radius: 0%;
+        background: #282a2e00;
+        border-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

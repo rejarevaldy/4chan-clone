@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+<!-- Header -->
+{% block title%} 4chan {% endblock %}
+
+<!-- Content -->
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="mt-5 col-lg-6 text-center">
+      <h1 class="text-center fw-bold">4chan</h1>
+      <br />
+      <!-- card -->
+      <div class="card rounded-0 border border-dark shadow-sm">
+        <div class="card-header bg-purple rounded-0 p-1">
+          <h2 class="text-start fw-bold">Boards</h2>
+        </div>
+        <div class="card-body text-start p-2 bg-dark">
+          <div class="container">
+            <div class="row justify-content-between">
+              {% for board in boards %}
+              <div class="col-6">
+                <h4>
+                  <a
+                    href="/{{board.board_short_name}}/"
+                    class="text-decoration-none"
+                  >
+                    {{board.board_name}}</a
+                  >
+                </h4>
+              </div>
+              <div class="col-6 text-end">
+                <h4>/ {{board.board_short_name}} /</h4>
+              </div>
+              {%endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
